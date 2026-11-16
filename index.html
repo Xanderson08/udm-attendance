@@ -1,0 +1,4965 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSFiddle zbrcaopu</title>
+
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+html,
+body {
+    min-height: 100%;
+}
+
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #003b24,
+        #00a86b
+    );
+    padding: 25px;
+}
+
+
+/* ================= APP ================= */
+
+.app {
+    display: flex;
+    gap: 25px;
+    min-height: calc(100vh - 50px);
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+
+    background: linear-gradient(
+        180deg,
+        #006b3f,
+        #00351f
+    );
+
+    color: white;
+
+    border-radius: 30px;
+
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, .35);
+}
+
+
+.brand {
+    text-align: center;
+}
+
+
+.logo {
+    width: 110px;
+    height: 110px;
+
+    margin: auto;
+
+    background: white;
+    color: #006b3f;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 60px;
+}
+
+
+.brand h2 {
+    font-size: 42px;
+    margin-top: 15px;
+}
+
+
+.brand p {
+    opacity: .8;
+}
+
+
+/* ================= NAVIGATION ================= */
+
+nav {
+    margin-top: 40px;
+}
+
+
+.nav-btn {
+    width: 100%;
+
+    padding: 16px;
+
+    margin-bottom: 15px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.12);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-align: left;
+
+    transition: .3s;
+}
+
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: white;
+    color: #006b3f;
+
+    transform: translateX(8px);
+}
+
+
+/* ================= PROFILE ================= */
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.profile {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    background: rgba(255,255,255,.15);
+
+    padding: 15px;
+
+    border-radius: 20px;
+}
+
+
+.profile-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    background: white;
+    color: #006b3f;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
+}
+
+
+.profile h4 {
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+
+.profile p {
+    font-size: 12px;
+    opacity: .8;
+    word-break: break-word;
+}
+
+
+.logout-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: rgba(220, 38, 38, .9);
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    transition: .3s;
+}
+
+
+.logout-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* ================= CONTENT ================= */
+
+.content {
+    flex: 1;
+    min-width: 0;
+
+    background: #f8fafc;
+
+    border-radius: 30px;
+
+    padding: 35px;
+
+    overflow: auto;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.25);
+}
+
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+
+.topbar h1 {
+    color: #006b3f;
+    font-size: 38px;
+}
+
+
+.topbar p {
+    color: #666;
+}
+
+
+/* ================= CLOCK ================= */
+
+.clock {
+    background: white;
+
+    padding: 15px 20px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.1);
+
+    min-width: 190px;
+}
+
+
+.clock h3 {
+    color: #006b3f;
+    font-size: 15px;
+}
+
+
+.clock p {
+    color: #333;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #006b3f,
+        #00a86b
+    );
+
+    color: white;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    margin-bottom: 30px;
+}
+
+
+.hero h2 {
+    margin-bottom: 8px;
+}
+
+
+/* ================= DASHBOARD ================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+.stat {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.08);
+
+    transition: .3s;
+}
+
+
+.stat:hover {
+    transform: translateY(-8px);
+}
+
+
+.stat h3 {
+    color: #555;
+}
+
+
+.stat h1 {
+    font-size: 45px;
+
+    color: #006b3f;
+
+    margin-top: 15px;
+}
+
+
+.blue {
+    border-bottom: 6px solid #2563eb;
+}
+
+
+.green {
+    border-bottom: 6px solid #16a34a;
+}
+
+
+.red {
+    border-bottom: 6px solid #dc2626;
+}
+
+
+.gold {
+    border-bottom: 6px solid #d4af37;
+}
+
+
+.orange {
+    border-bottom: 6px solid #f97316;
+}
+
+
+.purple {
+    border-bottom: 6px solid #7c3aed;
+}
+
+
+/* ================= DROPPED STUDENTS PANEL ================= */
+
+.drop-columns {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+
+.drop-column {
+    padding: 20px;
+
+    border-radius: 20px;
+}
+
+
+.drop-column h3 {
+    margin-bottom: 12px;
+}
+
+
+.unofficial-column {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+}
+
+
+.unofficial-column h3 {
+    color: #c2410c;
+}
+
+
+.official-column {
+    background: #f5f3ff;
+    border: 1px solid #ddd6fe;
+}
+
+
+.official-column h3 {
+    color: #6d28d9;
+}
+
+
+.drop-item {
+    padding: 10px 0;
+
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+
+
+.drop-item:last-child {
+    border-bottom: none;
+}
+
+
+.drop-item small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #666;
+}
+
+
+.drop-empty {
+    color: #888;
+}
+
+
+/* ================= PANELS ================= */
+
+.panel {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    margin-top: 30px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.08);
+}
+
+
+/* ================= PROGRESS ================= */
+
+.progress-container {
+    width: 100%;
+    height: 20px;
+
+    background: #e5e7eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin: 20px 0 10px;
+}
+
+
+#attendanceProgress {
+    height: 100%;
+    width: 0%;
+
+    background: #00a86b;
+
+    transition: .5s;
+}
+
+
+/* ================= FORMS ================= */
+
+.toolbar {
+    display: flex;
+
+    gap: 15px;
+
+    margin: 25px 0;
+}
+
+
+input,
+select {
+    padding: 14px;
+
+    border-radius: 15px;
+
+    border: 1px solid #ccc;
+
+    font-size: 15px;
+}
+
+
+.toolbar input {
+    flex: 1;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+.save,
+.toolbar button {
+    background: #006b3f;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 25px;
+
+    border-radius: 18px;
+
+    font-weight: bold;
+}
+
+
+.save:hover,
+.toolbar button:hover {
+    background: #004225;
+}
+
+
+/* ================= STUDENTS ================= */
+
+.student-card {
+    background: white;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.student-info h3 {
+    color: #006b3f;
+
+    margin-bottom: 5px;
+}
+
+
+.student-info p {
+    color: #666;
+
+    margin-top: 3px;
+}
+
+
+.delete-btn {
+    background: #dc2626;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 15px;
+
+    border-radius: 12px;
+}
+
+
+/* ================= DROP STATUS (STUDENT CARDS) ================= */
+
+.student-card.dropped {
+    opacity: .9;
+
+    border-left: 6px solid #f97316;
+}
+
+
+.badge {
+    display: inline-block;
+
+    margin-left: 8px;
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    vertical-align: middle;
+}
+
+
+.badge-active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+.badge-unofficial {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+
+.badge-official {
+    background: #ede9fe;
+    color: #5b21b6;
+}
+
+
+.student-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+}
+
+
+.drop-btn {
+    border: none;
+
+    padding: 10px 15px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+}
+
+
+.unofficial-btn {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+
+.unofficial-btn:hover {
+    background: #fed7aa;
+}
+
+
+.official-btn {
+    background: #ede9fe;
+    color: #5b21b6;
+}
+
+
+.official-btn:hover {
+    background: #ddd6fe;
+}
+
+
+.reinstate-btn {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+.reinstate-btn:hover {
+    background: #bbf7d0;
+}
+
+
+/* ================= ATTENDANCE ================= */
+
+.attendance-card {
+    background: white;
+
+    padding: 20px;
+
+    margin: 15px 0;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.attendance-buttons {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+
+.status-btn {
+    border: none;
+
+    padding: 10px 15px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+}
+
+
+.present-btn {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+.absent-btn {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+.late-btn {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+
+.status-btn.selected {
+    outline: 3px solid #006b3f;
+}
+
+
+/* ================= REPORTS ================= */
+
+.report-row {
+    padding: 18px;
+
+    border-bottom: 1px solid #ddd;
+}
+
+
+.report-row:last-child {
+    border-bottom: none;
+}
+
+
+/* ================= SETTINGS ================= */
+
+.settings-card {
+    background: white;
+
+    padding: 25px;
+
+    margin-top: 20px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+}
+
+
+.settings-card h3 {
+    color: #006b3f;
+
+    margin-bottom: 15px;
+}
+
+
+.settings-card select {
+    width: 100%;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    color: #777;
+}
+
+
+/* ================= HIDDEN ================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ================= FACULTY AUTH ================= */
+
+.auth-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    overflow-y: auto;
+
+    background: linear-gradient(
+        135deg,
+        #003b24,
+        #00a86b
+    );
+}
+
+
+.auth-card {
+    width: 100%;
+    max-width: 480px;
+
+    margin: auto;
+
+    background: #ffffff;
+    color: #222;
+
+    border-radius: 30px;
+
+    padding: 35px 35px 30px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, .35);
+}
+
+
+.auth-lang {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.auth-lang select {
+    padding: 6px 10px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+}
+
+
+.auth-brand {
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+
+.auth-brand .logo {
+    width: 90px;
+    height: 90px;
+
+    font-size: 48px;
+
+    background: #e8f5ee;
+}
+
+
+.auth-brand h2 {
+    margin-top: 10px;
+
+    color: #006b3f;
+    font-size: 34px;
+}
+
+
+.auth-brand p {
+    color: #006b3f;
+    font-weight: bold;
+}
+
+
+.auth-brand small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #666;
+}
+
+
+.auth-tabs {
+    display: flex;
+
+    gap: 6px;
+
+    padding: 5px;
+
+    margin-bottom: 20px;
+
+    background: #eef2f0;
+
+    border-radius: 16px;
+}
+
+
+.auth-tab {
+    flex: 1;
+
+    padding: 11px 8px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: transparent;
+
+    color: #555;
+
+    font-weight: bold;
+    font-size: 14px;
+
+    transition: .2s;
+}
+
+
+.auth-tab.active {
+    background: #006b3f;
+    color: white;
+}
+
+
+.form-group {
+    margin-bottom: 14px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    color: #333;
+}
+
+
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="password"] {
+    width: 100%;
+}
+
+
+.auth-card input:focus {
+    outline: 2px solid #00a86b;
+    border-color: #00a86b;
+}
+
+
+.form-row {
+    display: flex;
+
+    gap: 12px;
+}
+
+
+.hint {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #777;
+}
+
+
+.show-pass {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+
+    font-size: 13px;
+    color: #555;
+
+    cursor: pointer;
+}
+
+
+.show-pass input {
+    width: auto;
+    padding: 0;
+}
+
+
+.auth-message {
+    min-height: 0;
+
+    margin-bottom: 12px;
+
+    padding: 0;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+}
+
+
+.auth-message.error,
+.auth-message.success {
+    padding: 11px 14px;
+}
+
+
+.auth-message.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+.auth-message.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+.auth-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: #006b3f;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: .3s;
+}
+
+
+.auth-btn:hover {
+    background: #004225;
+}
+
+
+.auth-switch {
+    margin-top: 16px;
+
+    text-align: center;
+
+    font-size: 14px;
+    color: #666;
+}
+
+
+.auth-switch a {
+    color: #006b3f;
+    font-weight: bold;
+}
+
+
+/* ================= DARK MODE ================= */
+
+body.dark-mode {
+    background: #111827;
+}
+
+
+body.dark-mode .content {
+    background: #1f2937;
+    color: white;
+}
+
+
+body.dark-mode .stat,
+body.dark-mode .panel,
+body.dark-mode .student-card,
+body.dark-mode .attendance-card,
+body.dark-mode .settings-card,
+body.dark-mode .clock,
+body.dark-mode .empty {
+    background: #374151;
+    color: white;
+}
+
+
+body.dark-mode .stat h3,
+body.dark-mode .topbar p,
+body.dark-mode .student-info p,
+body.dark-mode .clock p {
+    color: #d1d5db;
+}
+
+
+body.dark-mode .topbar h1,
+body.dark-mode .stat h1,
+body.dark-mode .student-info h3,
+body.dark-mode .clock h3 {
+    color: #6ee7b7;
+}
+
+
+body.dark-mode .unofficial-column {
+    background: #431407;
+    border-color: #9a3412;
+}
+
+
+body.dark-mode .official-column {
+    background: #2e1065;
+    border-color: #6d28d9;
+}
+
+
+body.dark-mode .unofficial-column h3 {
+    color: #fdba74;
+}
+
+
+body.dark-mode .official-column h3 {
+    color: #c4b5fd;
+}
+
+
+body.dark-mode .drop-item small,
+body.dark-mode .drop-empty {
+    color: #d1d5db;
+}
+
+
+/* ================= LIGHT MODE ================= */
+
+body.light-mode {
+    background: #e5e7eb;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 1000px) {
+
+    .app {
+        flex-direction: column;
+    }
+
+
+    .sidebar {
+        width: 100%;
+    }
+
+
+    nav {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+
+    .nav-btn {
+        margin-bottom: 0;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+
+    .content {
+        padding: 20px;
+    }
+
+
+    .topbar {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .topbar h1 {
+        font-size: 30px;
+    }
+
+
+    .clock {
+        width: 100%;
+    }
+
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .drop-columns {
+        grid-template-columns: 1fr;
+    }
+
+
+    .student-actions {
+        justify-content: flex-start;
+    }
+
+
+    .toolbar {
+        flex-direction: column;
+    }
+
+
+    .student-card,
+    .attendance-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .attendance-buttons {
+        flex-wrap: wrap;
+    }
+
+
+    .auth-card {
+        padding: 25px 20px;
+    }
+
+
+    .form-row {
+        flex-direction: column;
+
+        gap: 0;
+    }
+
+}
+
+
+/* ================= PRINT ================= */
+
+@media print {
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+
+    .auth-screen,
+    .sidebar,
+    .topbar,
+    .save,
+    .delete-btn,
+    .student-actions,
+    .toolbar {
+        display: none !important;
+    }
+
+
+    .content {
+        box-shadow: none;
+        padding: 20px;
+        background: white;
+    }
+
+}
+
+/* =====================================================
+   REVISION: AUTO-DROP + FULL S.Y. ATTENDANCE SHEET
+   ===================================================== */
+
+/* ---------- Absence counters ---------- */
+
+.rule-hint {
+    margin-top: 14px;
+
+    padding: 12px 16px;
+
+    border-radius: 14px;
+
+    background: #fff7ed;
+    color: #9a3412;
+
+    font-size: 14px;
+}
+
+
+.absence-line {
+    color: #666;
+}
+
+
+.absence-line.abs-warn {
+    color: #b45309;
+    font-weight: bold;
+}
+
+
+/* ---------- Sheet page ---------- */
+
+.sheet-meta p {
+    margin: 4px 0;
+}
+
+
+.sheet-legend {
+    color: #666;
+    font-size: 14px;
+}
+
+
+.toolbar select {
+    min-width: 170px;
+}
+
+
+.sheet-wrap {
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+
+    overflow: auto;
+
+    max-height: 70vh;
+}
+
+
+.sheet-table {
+    border-collapse: separate;
+    border-spacing: 0;
+
+    width: 100%;
+
+    font-size: 14px;
+}
+
+
+.sheet-table th,
+.sheet-table td {
+    padding: 10px 8px;
+
+    text-align: center;
+
+    background: white;
+
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #f1f5f9;
+
+    white-space: nowrap;
+}
+
+
+.sheet-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+
+    background: #006b3f;
+    color: white;
+
+    font-size: 13px;
+}
+
+
+.sheet-table thead th small {
+    display: block;
+
+    font-weight: normal;
+    opacity: .8;
+}
+
+
+.sheet-table .sticky-1,
+.sheet-table .sticky-2 {
+    position: sticky;
+    z-index: 2;
+}
+
+
+.sheet-table thead .sticky-1,
+.sheet-table thead .sticky-2 {
+    z-index: 4;
+}
+
+
+.sheet-table .sticky-1 {
+    left: 0;
+
+    min-width: 44px;
+    width: 44px;
+}
+
+
+.sheet-table .sticky-2 {
+    left: 44px;
+
+    min-width: 210px;
+
+    text-align: left;
+}
+
+
+.sheet-table .col-student small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #666;
+    font-weight: normal;
+}
+
+
+.sheet-table thead .col-student small {
+    color: white;
+}
+
+
+.sheet-table .col-date {
+    min-width: 58px;
+}
+
+
+.sheet-table .col-total {
+    font-weight: bold;
+
+    min-width: 70px;
+}
+
+
+.sheet-table .col-status {
+    min-width: 170px;
+}
+
+
+.sheet-table .row-dropped td {
+    background: #fff7ed;
+}
+
+
+.cell-present {
+    background: #dcfce7 !important;
+    color: #166534;
+    font-weight: bold;
+}
+
+
+.cell-absent {
+    background: #fee2e2 !important;
+    color: #991b1b;
+    font-weight: bold;
+}
+
+
+.cell-late {
+    background: #fef3c7 !important;
+    color: #92400e;
+    font-weight: bold;
+}
+
+
+.cell-none {
+    color: #9ca3af;
+}
+
+
+.abs-unofficial {
+    background: #ffedd5 !important;
+    color: #9a3412;
+}
+
+
+.abs-official {
+    background: #ede9fe !important;
+    color: #5b21b6;
+}
+
+
+.sheet-empty {
+    padding: 30px !important;
+
+    color: #777;
+}
+
+
+.sheet-caption {
+    padding: 14px;
+
+    color: #777;
+}
+
+
+/* ---------- Drop history ---------- */
+
+.log-row {
+    display: grid;
+
+    grid-template-columns: 1.4fr 1.6fr 1.4fr 1.4fr;
+
+    gap: 12px;
+
+    align-items: center;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.log-row:last-child {
+    border-bottom: none;
+}
+
+
+.log-row small {
+    display: block;
+
+    color: #666;
+}
+
+
+.log-tag {
+    display: inline-block;
+
+    padding: 3px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.log-auto {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+
+.log-manual {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+
+.log-reinstate {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+/* ---------- Settings: school year ---------- */
+
+.settings-card .form-row input[type="date"] {
+    width: 100%;
+}
+
+
+.settings-card .form-group {
+    margin-bottom: 8px;
+}
+
+
+/* ---------- Dark mode additions ---------- */
+
+body.dark-mode .rule-hint {
+    background: #431407;
+    color: #fdba74;
+}
+
+
+body.dark-mode .sheet-wrap,
+body.dark-mode .sheet-table th,
+body.dark-mode .sheet-table td {
+    background: #374151;
+    color: white;
+}
+
+
+body.dark-mode .sheet-table {
+    border-color: #4b5563;
+}
+
+
+body.dark-mode .sheet-table th,
+body.dark-mode .sheet-table td {
+    border-color: #4b5563;
+}
+
+
+body.dark-mode .sheet-table thead th {
+    background: #065f46;
+}
+
+
+body.dark-mode .sheet-table .row-dropped td {
+    background: #3b2a1f;
+}
+
+
+body.dark-mode .sheet-table .col-student small,
+body.dark-mode .sheet-legend,
+body.dark-mode .log-row small,
+body.dark-mode .absence-line {
+    color: #d1d5db;
+}
+
+
+body.dark-mode .sheet-table .cell-present {
+    background: #14532d !important;
+    color: #bbf7d0;
+}
+
+
+body.dark-mode .sheet-table .cell-absent {
+    background: #7f1d1d !important;
+    color: #fecaca;
+}
+
+
+body.dark-mode .sheet-table .cell-late {
+    background: #78350f !important;
+    color: #fde68a;
+}
+
+
+body.dark-mode .sheet-table .cell-none {
+    color: #9ca3af;
+}
+
+
+body.dark-mode .log-row {
+    border-color: #4b5563;
+}
+
+
+/* ---------- Responsive additions ---------- */
+
+@media (max-width: 1000px) {
+
+    .log-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .log-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .sheet-table .sticky-2 {
+        min-width: 150px;
+    }
+
+}
+
+
+/* ---------- Print: full attendance sheet ---------- */
+
+@page {
+    size: landscape;
+}
+
+
+@media print {
+
+    .sheet-wrap {
+        max-height: none;
+        overflow: visible;
+        box-shadow: none;
+    }
+
+    .sheet-table {
+        font-size: 10px;
+    }
+
+    .sheet-table th,
+    .sheet-table td {
+        padding: 4px;
+    }
+
+    .sheet-table .sticky-1,
+    .sheet-table .sticky-2,
+    .sheet-table thead th {
+        position: static;
+    }
+
+    .sheet-table td,
+    .sheet-table th {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .rule-hint {
+        display: none;
+    }
+
+}
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDM Smart Attendance System</title>
+</head>
+
+<body>
+
+<!-- ================= FACULTY AUTH SCREEN ================= -->
+<div id="authScreen" class="auth-screen">
+
+    <div class="auth-card">
+
+        <div class="auth-lang">
+            <select id="authLanguage" onchange="changeLanguage(this.value)">
+                <option value="tl">Tagalog</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <div class="auth-brand">
+            <div class="logo">🦁</div>
+            <h2>UDM</h2>
+            <p data-i18n="authTitle">Faculty Portal</p>
+            <small data-i18n="authSubtitle">Para lamang sa mga guro ng Universidad de Manila.</small>
+        </div>
+
+        <div class="auth-tabs">
+            <button type="button" id="tabLogin" class="auth-tab active" onclick="switchAuthTab('login')" data-i18n="loginTab">Mag-login</button>
+            <button type="button" id="tabSignup" class="auth-tab" onclick="switchAuthTab('signup')" data-i18n="signupTab">Gumawa ng Account</button>
+        </div>
+
+        <!-- LOGIN -->
+        <form id="loginForm" onsubmit="handleLogin(event)" autocomplete="on">
+
+            <div class="form-group">
+                <label for="loginId" data-i18n="idOrEmail">Faculty ID o Email</label>
+                <input type="text" id="loginId" autocomplete="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword" data-i18n="password">Password</label>
+                <input type="password" id="loginPassword" autocomplete="current-password" required>
+            </div>
+
+            <label class="show-pass">
+                <input type="checkbox" onchange="toggleShowPassword(this.checked, ['loginPassword'])">
+                <span data-i18n="showPassword">Ipakita ang password</span>
+            </label>
+
+            <div id="loginMessage" class="auth-message"></div>
+
+            <button type="submit" class="auth-btn" data-i18n="loginBtn">Mag-login</button>
+
+            <p class="auth-switch">
+                <span data-i18n="noAccount">Wala ka pang account?</span>
+                <a href="#" onclick="switchAuthTab('signup'); return false;" data-i18n="createLink">Gumawa ng account</a>
+            </p>
+
+        </form>
+
+        <!-- SIGN UP -->
+        <form id="signupForm" class="hidden" onsubmit="handleSignup(event)" autocomplete="off">
+
+            <div class="form-group">
+                <label for="signupName" data-i18n="fullName">Buong Pangalan</label>
+                <input type="text" id="signupName" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="signupId" data-i18n="facultyId">Faculty ID</label>
+                    <input type="text" id="signupId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupDept" data-i18n="department">Department / College</label>
+                    <input type="text" id="signupDept" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="signupEmail" data-i18n="email">Email</label>
+                <input type="email" id="signupEmail" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="signupPassword" data-i18n="password">Password</label>
+                    <input type="password" id="signupPassword" autocomplete="new-password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupConfirm" data-i18n="confirmPassword">Kumpirmahin ang Password</label>
+                    <input type="password" id="signupConfirm" autocomplete="new-password" required>
+                </div>
+            </div>
+
+            <label class="show-pass">
+                <input type="checkbox" onchange="toggleShowPassword(this.checked, ['signupPassword', 'signupConfirm'])">
+                <span data-i18n="showPassword">Ipakita ang password</span>
+            </label>
+
+            <div class="form-group">
+                <label for="signupCode" data-i18n="accessCode">Faculty Access Code</label>
+                <input type="password" id="signupCode" autocomplete="off" required>
+                <small class="hint" data-i18n="accessHint">Ibinibigay ng administrasyon ng paaralan.</small>
+            </div>
+
+            <div id="signupMessage" class="auth-message"></div>
+
+            <button type="submit" class="auth-btn" data-i18n="signupBtn">Gumawa ng Account</button>
+
+            <p class="auth-switch">
+                <span data-i18n="haveAccount">May account ka na?</span>
+                <a href="#" onclick="switchAuthTab('login'); return false;" data-i18n="loginLink">Mag-login</a>
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div class="app hidden" id="appShell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="brand">
+
+                <div class="logo">🦁</div>
+
+                <h2>UDM</h2>
+
+                <p>Smart Attendance System</p>
+
+            </div>
+
+
+            <nav>
+
+                <button class="nav-btn active" onclick="openPage('dashboard', this)">
+                    🏠
+                    <span id="menuDashboard">Dashboard</span>
+                </button>
+
+                <button class="nav-btn" onclick="openPage('students', this)">
+                    👨‍🎓
+                    <span id="menuStudents">Mga Mag-aaral</span>
+                </button>
+
+                <button class="nav-btn" onclick="openPage('attendance', this)">
+                    📅
+                    <span id="menuAttendance">Attendance</span>
+                </button>
+
+                <!-- NEW: full attendance sheet -->
+                <button class="nav-btn" onclick="openPage('sheet', this)">
+                    🗂️
+                    <span id="menuSheet">Attendance Sheet</span>
+                </button>
+
+                <button class="nav-btn" onclick="openPage('reports', this)">
+                    📊
+                    <span id="menuReports">Mga Ulat</span>
+                </button>
+
+                <button class="nav-btn" onclick="openPage('settings', this)">
+                    ⚙️
+                    <span id="menuSettings">Mga Setting</span>
+                </button>
+
+            </nav>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <!-- PROFILE -->
+            <div class="profile">
+
+                <div class="profile-icon">
+                    🏫
+                </div>
+
+                <div>
+
+                    <h4 id="profileName">
+                        Tagapamahala ng Sistema
+                    </h4>
+
+                    <p id="profileRole">
+                        Opisyal ng Attendance
+                    </p>
+
+                </div>
+
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+                🚪 <span id="menuLogout">Mag-logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+                <p id="pageDescription">
+                    Sistema ng Attendance ng Universidad de Manila
+                </p>
+
+            </div>
+
+
+            <!-- CLOCK -->
+            <div class="clock">
+
+                <h3 id="date">
+                    Loading...
+                </h3>
+
+                <p id="time">
+                    Loading...
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard">
+
+            <div class="hero">
+
+                <h2 id="welcomeText">
+                    Maligayang Pagbabalik! 👋
+                </h2>
+
+                <p id="welcomeDescription">
+                    Pamahalaan ang attendance ng mga mag-aaral.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="stat blue">
+                    <h3 id="totalLabel">Kabuuang Mag-aaral</h3>
+                    <h1 id="totalStudents">0</h1>
+                </div>
+
+                <div class="stat green">
+                    <h3 id="presentLabel">Pumasok Ngayon</h3>
+                    <h1 id="presentCount">0</h1>
+                </div>
+
+                <div class="stat red">
+                    <h3 id="absentLabel">Lumiban Ngayon</h3>
+                    <h1 id="absentCount">0</h1>
+                </div>
+
+                <div class="stat gold">
+                    <h3 id="lateLabel">Na-late Ngayon</h3>
+                    <h1 id="lateCount">0</h1>
+                </div>
+
+                <div class="stat orange">
+                    <h3 id="unofficialDropLabel">Unofficially Dropped</h3>
+                    <h1 id="unofficialCount">0</h1>
+                </div>
+
+                <div class="stat purple">
+                    <h3 id="officialDropLabel">Officially Dropped</h3>
+                    <h1 id="officialCount">0</h1>
+                </div>
+
+            </div>
+
+
+            <!-- PERFORMANCE -->
+            <div class="panel">
+
+                <h2 id="performanceTitle">
+                    Attendance Performance
+                </h2>
+
+                <div class="progress-container">
+                    <div id="attendanceProgress"></div>
+                </div>
+
+                <h3 id="percentageText">
+                    0%
+                </h3>
+
+            </div>
+
+
+            <!-- DROPPED STUDENTS -->
+            <div class="panel">
+
+                <h2 id="droppedTitle">
+                    Mga Na-drop na Mag-aaral
+                </h2>
+
+                <div class="drop-columns">
+
+                    <div class="drop-column unofficial-column">
+                        <h3 id="unofficialListTitle">Unofficially Dropped</h3>
+                        <div id="unofficialList"></div>
+                    </div>
+
+                    <div class="drop-column official-column">
+                        <h3 id="officialListTitle">Officially Dropped</h3>
+                        <div id="officialList"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVITY -->
+            <div class="panel">
+
+                <h2 id="activityTitle">
+                    Kamakailang Aktibidad
+                </h2>
+
+                <div id="activity">
+                    Walang aktibidad.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STUDENTS ================= -->
+
+        <section id="students" class="hidden">
+
+            <h2 id="studentTitle">
+                Pamamahala ng mga Mag-aaral
+            </h2>
+
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="studentSearch"
+                    placeholder="Hanapin ang estudyante"
+                    oninput="displayStudents()"
+                >
+
+                <select id="studentFilter" onchange="displayStudents()">
+                    <option value="all">All Students</option>
+                    <option value="present">Present</option>
+                    <option value="absent">Absent</option>
+                    <option value="late">Late</option>
+                    <option value="unofficial">Unofficially Dropped</option>
+                    <option value="official">Officially Dropped</option>
+                </select>
+
+                <button onclick="addStudentPrompt()" id="addStudentButton">
+                    + Magdagdag ng Mag-aaral
+                </button>
+
+            </div>
+
+
+            <div id="studentList"></div>
+
+        </section>
+
+
+        <!-- ================= ATTENDANCE ================= -->
+
+        <section id="attendance" class="hidden">
+
+            <h2 id="attendanceTitle">
+                Pamamahala ng Attendance
+            </h2>
+
+
+            <div class="panel">
+
+                <label for="attendanceDate">
+                    <strong>Petsa:</strong>
+                </label>
+
+                <input
+                    type="date"
+                    id="attendanceDate"
+                    onchange="displayAttendance()"
+                >
+
+                <!-- NEW: reminder of the auto-drop rules -->
+                <p id="attendanceHint" class="rule-hint"></p>
+
+            </div>
+
+
+            <div id="attendanceList"></div>
+
+
+            <button class="save" onclick="saveAttendance()" id="saveButton">
+                I-save ang Attendance
+            </button>
+
+        </section>
+
+
+        <!-- ================= FULL ATTENDANCE SHEET (NEW) ================= -->
+
+        <section id="sheet" class="hidden">
+
+            <h2 id="sheetTitle">
+                Buong Attendance Sheet
+            </h2>
+
+
+            <div class="panel sheet-meta">
+
+                <p>
+                    <strong id="sheetSYLabel">Taong Panuruan:</strong>
+                    <span id="sheetSY"></span>
+                </p>
+
+                <p class="sheet-legend" id="sheetLegend"></p>
+
+            </div>
+
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="sheetSearch"
+                    placeholder="Hanapin ang estudyante"
+                    oninput="renderSheet()"
+                >
+
+                <select id="sheetMonth" onchange="renderSheet()">
+                    <option value="all">All</option>
+                </select>
+
+                <button onclick="downloadSheetCSV()" id="sheetCsvButton">
+                    ⬇ CSV
+                </button>
+
+                <button onclick="printSheet()" id="sheetPrintButton">
+                    🖨 Print
+                </button>
+
+            </div>
+
+
+            <div class="sheet-wrap">
+                <table id="sheetTable" class="sheet-table"></table>
+            </div>
+
+
+            <div class="panel">
+
+                <h2 id="dropLogTitle">
+                    Drop History
+                </h2>
+
+                <div id="dropLog"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REPORTS ================= -->
+
+        <section id="reports" class="hidden">
+
+            <h2 id="reportTitle">
+                Mga Ulat ng Attendance
+            </h2>
+
+
+            <div class="panel">
+
+                <div id="reportList">
+                    Walang ulat.
+                </div>
+
+                <br>
+
+                <button class="save" onclick="printReport()" id="printButton">
+                    🖨 I-print ang Ulat
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section id="settings" class="hidden">
+
+            <h2 id="settingsTitle">
+                Mga Setting ng Sistema
+            </h2>
+
+
+            <!-- LANGUAGE -->
+            <div class="settings-card">
+
+                <h3>
+                    🌐
+                    <span id="languageLabel">Wika</span>
+                </h3>
+
+                <select id="languageSelect" onchange="changeLanguage()">
+                    <option value="tl">Tagalog</option>
+                    <option value="en">English</option>
+                </select>
+
+            </div>
+
+
+            <!-- THEME -->
+            <div class="settings-card">
+
+                <h3>
+                    🎨
+                    <span id="themeLabel">Tema</span>
+                </h3>
+
+                <select id="themeSelect" onchange="changeTheme()">
+                    <option value="green">University Green</option>
+                    <option value="dark">Dark Mode</option>
+                    <option value="light">Light Mode</option>
+                </select>
+
+            </div>
+
+
+            <!-- SCHOOL YEAR (NEW) -->
+            <div class="settings-card">
+
+                <h3>
+                    📆
+                    <span id="syCardTitle">Taong Panuruan (S.Y.)</span>
+                </h3>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="syStart" id="syStartLabel">Simula ng S.Y.</label>
+                        <input type="date" id="syStart" onchange="saveSchoolYear()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="syEnd" id="syEndLabel">Katapusan ng S.Y.</label>
+                        <input type="date" id="syEnd" onchange="saveSchoolYear()">
+                    </div>
+
+                </div>
+
+                <div id="syMessage" class="auth-message"></div>
+
+            </div>
+
+
+            <!-- DROP RULES (NEW) -->
+            <div class="settings-card">
+
+                <h3>
+                    📋
+                    <span id="rulesTitle">Patakaran sa Pag-drop</span>
+                </h3>
+
+                <p id="rulesText"></p>
+
+            </div>
+
+
+            <!-- SCHOOL INFO -->
+            <div class="settings-card">
+
+                <h3>
+                    🏫
+                    <span id="schoolLabel">Impormasyon ng Paaralan</span>
+                </h3>
+
+                <p>Universidad de Manila</p>
+
+                <p>Smart Attendance Management System</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+</body>
+</html>
+
+  <script>
+    // =====================================
+// UDM SMART ATTENDANCE SYSTEM
+// COMPLETE JAVASCRIPT
+// (Faculty Login + Drop Status + Auto-Drop + Full S.Y. Attendance Sheet)
+// =====================================
+
+// =====================================
+// SETTINGS
+// =====================================
+
+// Only people who know this code can create a faculty account.
+// Change it to whatever code your school/admin wants to give to faculty.
+const FACULTY_ACCESS_CODE = "UDM-FACULTY-2026";
+
+const MAX_LOGIN_ATTEMPTS = 5;
+const LOCKOUT_SECONDS = 30;
+
+// Automatic drop rules (counted per school year, "late" is NOT counted):
+//   3 absences -> Unofficially Dropped
+//   8 absences -> Officially Dropped
+const ABSENT_UNOFFICIAL = 3;
+const ABSENT_OFFICIAL = 8;
+
+// Student statuses:
+//   "active"     = currently enrolled (default)
+//   "unofficial" = Unofficially Dropped (still on the roll, attendance is still
+//                  recorded, but flagged. Becomes official at 8 absences)
+//   "official"   = Officially Dropped (no more attendance recorded)
+
+// =====================================
+// DATABASE
+// =====================================
+
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+let records = JSON.parse(localStorage.getItem("records")) || [];
+
+let faculty = JSON.parse(localStorage.getItem("faculty")) || [];
+
+// History of every drop / reinstatement (automatic or manual) for transparency
+let dropLog = JSON.parse(localStorage.getItem("dropLog")) || [];
+
+let schoolYear =
+  JSON.parse(localStorage.getItem("schoolYear")) || getDefaultSchoolYear();
+
+let attendanceStatus = {};
+
+let currentFaculty = null;
+
+let failedAttempts = 0;
+
+let lockedUntil = 0;
+
+let currentLanguage = localStorage.getItem("language") || "tl";
+
+let currentTheme = localStorage.getItem("theme") || "green";
+
+// Default school year: June 1 to March 31 (typical Philippine school calendar).
+// Change it anytime in Settings.
+function getDefaultSchoolYear() {
+  const now = new Date();
+
+  const startYear = now.getMonth() >= 5 ? now.getFullYear() : now.getFullYear() - 1;
+
+  return {
+    start: startYear + "-06-01",
+    end: startYear + 1 + "-03-31",
+  };
+}
+
+// =====================================
+// TRANSLATION
+// =====================================
+
+const text = {
+  tl: {
+    dashboard: "Dashboard",
+    students: "Mga Mag-aaral",
+    attendance: "Attendance",
+    reports: "Mga Ulat",
+    settings: "Mga Setting",
+
+    manager: "Tagapamahala ng Sistema",
+    role: "Opisyal ng Attendance",
+
+    welcome: "Maligayang Pagbabalik! 👋",
+
+    description: "Pamahalaan ang attendance ng mga mag-aaral.",
+
+    total: "Kabuuang Mag-aaral",
+    present: "Pumasok Ngayon",
+    absent: "Lumiban Ngayon",
+    late: "Na-late Ngayon",
+
+    studentTitle: "Pamamahala ng mga Mag-aaral",
+
+    attendanceTitle: "Pamamahala ng Attendance",
+
+    reportTitle: "Mga Ulat ng Attendance",
+
+    settingsTitle: "Mga Setting ng Sistema",
+
+    add: "+ Magdagdag ng Mag-aaral",
+
+    save: "I-save ang Attendance",
+
+    print: "I-print ang Ulat",
+
+    noStudent: "Wala pang naidagdag na mag-aaral.",
+
+    noReport: "Walang available na ulat.",
+
+    search: "Hanapin ang estudyante",
+
+    saved: "Matagumpay na nai-save ang attendance!",
+
+    selectDate: "Pumili muna ng petsa.",
+
+    confirm: "Ibura ang estudyanteng ito?",
+
+    deleted: "Matagumpay na nabura ang estudyante.",
+
+    percentage: "Attendance Rate",
+
+    presentStatus: "Pumasok",
+
+    absentStatus: "Lumiban",
+
+    lateStatus: "Na-late",
+
+    noMatching: "Walang nakitang katugmang mag-aaral.",
+
+    // ---- Drop status ----
+    unofficialLabel: "Unofficially Dropped",
+    officialLabel: "Officially Dropped",
+    droppedTitle: "Mga Na-drop na Mag-aaral",
+    noneDropped: "Wala.",
+    filterAll: "Lahat ng Mag-aaral",
+    filterActive: "Active",
+    statusActive: "Active",
+    unofficialBtn: "⚠️ Unofficially Drop",
+    officialBtn: "❌ Officially Drop",
+    reinstateBtn: "↩ Ibalik (Reinstate)",
+    deleteBtn: "🗑️ Delete",
+    confirmUnofficial: "Markahan ang estudyanteng ito bilang Unofficially Dropped?",
+    confirmOfficial: "Markahan ang estudyanteng ito bilang Officially Dropped?",
+    confirmReinstate:
+      "Ibalik ang estudyanteng ito bilang Active? Magsisimula ulit ang bilang ng pagliban mula ngayon.",
+    statusChanged: "Matagumpay na na-update ang status ng mag-aaral.",
+    statusSince: "Mula noong:",
+    todayLabel: "Ngayon:",
+    noActive: "Walang mag-aaral na kailangang i-record ang attendance.",
+
+    // ---- Auto-drop ----
+    absencesLabel: "Pagliban",
+    absencesSY: "Kabuuang pagliban ngayong S.Y.:",
+    countingFrom: "Binibilang mula:",
+    autoTag: "(awtomatiko)",
+    autoDropAlert: "Awtomatikong na-drop ang mga sumusunod na mag-aaral:",
+    absencesWord: "pagliban",
+    attendanceHint:
+      "Awtomatikong Unofficially Dropped ang mag-aaral kapag {u} ang pagliban niya sa S.Y., at Officially Dropped kapag {o}. Hindi binibilang ang late.",
+    rulesTitle: "Patakaran sa Pag-drop",
+    rulesText:
+      "Kapag umabot sa {u} ang pagliban ng mag-aaral sa loob ng S.Y., awtomatiko siyang magiging Unofficially Dropped. Kapag umabot sa {o}, Officially Dropped na siya. Hindi binibilang ang pagiging late. Maaaring ibalik (reinstate) ng guro ang mag-aaral, at magsisimula ulit ang bilang mula sa araw na iyon.",
+
+    // ---- School year / sheet ----
+    sheet: "Attendance Sheet",
+    sheetTitle: "Buong Attendance Sheet",
+    sheetDesc: "Kumpletong talaan ng attendance sa buong taong panuruan.",
+    sheetSYLabel: "Taong Panuruan:",
+    sheetLegend: "P = Pumasok · A = Lumiban · L = Na-late · – = Walang tala",
+    sheetNoDates: "Wala pang naitalang attendance sa S.Y. na ito.",
+    colStudent: "Mag-aaral",
+    monthAll: "Buong S.Y.",
+    csvBtn: "⬇ CSV",
+    printSheetBtn: "🖨 I-print",
+    dropLogTitle: "Kasaysayan ng Pag-drop",
+    noDropLog: "Wala pang naitalang pag-drop.",
+    logAuto: "Awtomatiko",
+    logManual: "Manual",
+    logReinstate: "Ibinalik",
+    syCardTitle: "Taong Panuruan (S.Y.)",
+    syStartLabel: "Simula ng S.Y.",
+    syEndLabel: "Katapusan ng S.Y.",
+    syInvalid: "Dapat mauna ang petsa ng simula sa petsa ng katapusan.",
+    syOk: "Na-save ang taong panuruan.",
+
+    // ---- Faculty auth ----
+    authTitle: "Faculty Portal",
+    authSubtitle: "Para lamang sa mga guro ng Universidad de Manila.",
+    loginTab: "Mag-login",
+    signupTab: "Gumawa ng Account",
+    idOrEmail: "Faculty ID o Email",
+    password: "Password",
+    showPassword: "Ipakita ang password",
+    loginBtn: "Mag-login",
+    noAccount: "Wala ka pang account?",
+    createLink: "Gumawa ng account",
+    haveAccount: "May account ka na?",
+    loginLink: "Mag-login",
+    fullName: "Buong Pangalan",
+    facultyId: "Faculty ID",
+    department: "Department / College",
+    email: "Email",
+    confirmPassword: "Kumpirmahin ang Password",
+    accessCode: "Faculty Access Code",
+    accessHint: "Ibinibigay ng administrasyon ng paaralan.",
+    signupBtn: "Gumawa ng Account",
+    logout: "Mag-logout",
+    logoutConfirm: "Sigurado ka bang gusto mong mag-logout?",
+
+    errFillAll: "Punan ang lahat ng kailangang detalye.",
+    errEmail: "Maglagay ng tamang email address.",
+    errShortPassword: "Ang password ay dapat hindi bababa sa 8 karakter.",
+    errMismatch: "Hindi magkatugma ang mga password.",
+    errCode: "Maling Faculty Access Code. Para lamang sa faculty ang account.",
+    errIdExists: "Existing na ang Faculty ID na ito.",
+    errEmailExists: "Existing na ang email na ito.",
+    errLogin: "Maling Faculty ID/email o password.",
+    errLocked: "Masyadong maraming maling subok. Maghintay ng {s} segundo.",
+    okCreated: "Matagumpay na nagawa ang account! Maaari ka nang mag-login.",
+    welcomeUser: "Maligayang Pagbabalik, ",
+  },
+
+  en: {
+    dashboard: "Dashboard",
+    students: "Students",
+    attendance: "Attendance",
+    reports: "Reports",
+    settings: "Settings",
+
+    manager: "System Manager",
+    role: "School Attendance Officer",
+
+    welcome: "Welcome Back! 👋",
+
+    description: "Manage student attendance records efficiently.",
+
+    total: "Total Students",
+    present: "Present Today",
+    absent: "Absent Today",
+    late: "Late Today",
+
+    studentTitle: "Student Management",
+
+    attendanceTitle: "Attendance Management",
+
+    reportTitle: "Attendance Reports",
+
+    settingsTitle: "System Settings",
+
+    add: "+ Add Student",
+
+    save: "Save Attendance",
+
+    print: "Print Report",
+
+    noStudent: "No students added yet.",
+
+    noReport: "No reports available.",
+
+    search: "Search student",
+
+    saved: "Attendance saved successfully!",
+
+    selectDate: "Please select a date.",
+
+    confirm: "Delete this student?",
+
+    deleted: "Student deleted successfully.",
+
+    percentage: "Attendance Rate",
+
+    presentStatus: "Present",
+
+    absentStatus: "Absent",
+
+    lateStatus: "Late",
+
+    noMatching: "No matching students found.",
+
+    // ---- Drop status ----
+    unofficialLabel: "Unofficially Dropped",
+    officialLabel: "Officially Dropped",
+    droppedTitle: "Dropped Students",
+    noneDropped: "None.",
+    filterAll: "All Students",
+    filterActive: "Active",
+    statusActive: "Active",
+    unofficialBtn: "⚠️ Unofficially Drop",
+    officialBtn: "❌ Officially Drop",
+    reinstateBtn: "↩ Reinstate",
+    deleteBtn: "🗑️ Delete",
+    confirmUnofficial: "Mark this student as Unofficially Dropped?",
+    confirmOfficial: "Mark this student as Officially Dropped?",
+    confirmReinstate:
+      "Reinstate this student as Active? The absence count will restart from today.",
+    statusChanged: "Student status updated successfully.",
+    statusSince: "Since:",
+    todayLabel: "Today:",
+    noActive: "No students available for attendance.",
+
+    // ---- Auto-drop ----
+    absencesLabel: "Absences",
+    absencesSY: "Total absences this S.Y.:",
+    countingFrom: "Counting from:",
+    autoTag: "(automatic)",
+    autoDropAlert: "The following students were dropped automatically:",
+    absencesWord: "absences",
+    attendanceHint:
+      "A student becomes Unofficially Dropped automatically at {u} absences in the S.Y. and Officially Dropped at {o}. Late is not counted.",
+    rulesTitle: "Drop Rules",
+    rulesText:
+      "When a student reaches {u} absences within the school year, he or she is automatically marked Unofficially Dropped. At {o} absences, the student becomes Officially Dropped. Being late is not counted. A teacher can reinstate a student, and the count restarts from that day.",
+
+    // ---- School year / sheet ----
+    sheet: "Attendance Sheet",
+    sheetTitle: "Full Attendance Sheet",
+    sheetDesc: "Complete attendance record for the whole school year.",
+    sheetSYLabel: "School Year:",
+    sheetLegend: "P = Present · A = Absent · L = Late · – = No record",
+    sheetNoDates: "No attendance has been recorded in this S.Y. yet.",
+    colStudent: "Student",
+    monthAll: "Whole S.Y.",
+    csvBtn: "⬇ CSV",
+    printSheetBtn: "🖨 Print",
+    dropLogTitle: "Drop History",
+    noDropLog: "No drops recorded yet.",
+    logAuto: "Automatic",
+    logManual: "Manual",
+    logReinstate: "Reinstated",
+    syCardTitle: "School Year (S.Y.)",
+    syStartLabel: "S.Y. Start",
+    syEndLabel: "S.Y. End",
+    syInvalid: "The start date must be earlier than the end date.",
+    syOk: "School year saved.",
+
+    // ---- Faculty auth ----
+    authTitle: "Faculty Portal",
+    authSubtitle: "For Universidad de Manila faculty only.",
+    loginTab: "Login",
+    signupTab: "Create Account",
+    idOrEmail: "Faculty ID or Email",
+    password: "Password",
+    showPassword: "Show password",
+    loginBtn: "Log In",
+    noAccount: "Don't have an account?",
+    createLink: "Create one",
+    haveAccount: "Already have an account?",
+    loginLink: "Log in",
+    fullName: "Full Name",
+    facultyId: "Faculty ID",
+    department: "Department / College",
+    email: "Email",
+    confirmPassword: "Confirm Password",
+    accessCode: "Faculty Access Code",
+    accessHint: "Provided by the school administration.",
+    signupBtn: "Create Account",
+    logout: "Log Out",
+    logoutConfirm: "Are you sure you want to log out?",
+
+    errFillAll: "Please fill in all required fields.",
+    errEmail: "Please enter a valid email address.",
+    errShortPassword: "Password must be at least 8 characters.",
+    errMismatch: "Passwords do not match.",
+    errCode: "Incorrect Faculty Access Code. Accounts are for faculty only.",
+    errIdExists: "That Faculty ID is already registered.",
+    errEmailExists: "That email is already registered.",
+    errLogin: "Incorrect Faculty ID/email or password.",
+    errLocked: "Too many failed attempts. Please wait {s} seconds.",
+    okCreated: "Account created successfully! You can now log in.",
+    welcomeUser: "Welcome Back, ",
+  },
+};
+
+// =====================================
+// UTILITY FUNCTIONS
+// =====================================
+
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function escapeJS(value) {
+  return String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, "\\n")
+    .replace(/\r/g, "\\r");
+}
+
+// Safe for use inside onclick="..." attributes
+function attr(value) {
+  return escapeHTML(escapeJS(value));
+}
+
+function getToday() {
+  const now = new Date();
+
+  const year = now.getFullYear();
+
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+
+  const day = String(now.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function formatDate(isoString) {
+  if (!isoString) {
+    return "";
+  }
+
+  const date = new Date(isoString);
+
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+
+  return date.toLocaleDateString("en-PH", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+// Formats a plain "YYYY-MM-DD" day (no timezone shifting)
+function formatDay(day) {
+  if (!day) {
+    return "";
+  }
+
+  const date = new Date(day + "T00:00:00");
+
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+
+  return date.toLocaleDateString("en-PH", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+function saveStudents() {
+  localStorage.setItem("students", JSON.stringify(students));
+}
+
+function saveDropLog() {
+  localStorage.setItem("dropLog", JSON.stringify(dropLog));
+}
+
+// =====================================
+// SCHOOL YEAR HELPERS
+// =====================================
+
+function inSchoolYear(day) {
+  return day >= schoolYear.start && day <= schoolYear.end;
+}
+
+function getSchoolYearLabel() {
+  const startYear = schoolYear.start.slice(0, 4);
+
+  const endYear = schoolYear.end.slice(0, 4);
+
+  return startYear === endYear ? startYear : startYear + "–" + endYear;
+}
+
+function applySchoolYearInputs() {
+  document.getElementById("syStart").value = schoolYear.start;
+
+  document.getElementById("syEnd").value = schoolYear.end;
+}
+
+function saveSchoolYear() {
+  const t = text[currentLanguage];
+
+  const start = document.getElementById("syStart").value;
+
+  const end = document.getElementById("syEnd").value;
+
+  if (!start || !end || start >= end) {
+    showAuthMessage("syMessage", t.syInvalid, "error");
+    return;
+  }
+
+  schoolYear = { start: start, end: end };
+
+  localStorage.setItem("schoolYear", JSON.stringify(schoolYear));
+
+  showAuthMessage("syMessage", t.syOk, "success");
+
+  // The absence counts may change with a new school year
+  const dropped = applyAutoDrop();
+
+  refreshAll();
+
+  if (dropped.length > 0) {
+    alert(buildAutoDropMessage(dropped));
+  }
+}
+
+// =====================================
+// STUDENT STATUS HELPERS
+// =====================================
+
+// Older students saved before this update have no status, so they count as active.
+function getStudentStatus(student) {
+  return student.status || "active";
+}
+
+function getActiveStudents() {
+  return students.filter((student) => getStudentStatus(student) === "active");
+}
+
+// Students whose attendance is still recorded:
+// active + unofficially dropped (they can still reach 8 absences).
+// Officially dropped students are no longer recorded.
+function getAttendanceStudents() {
+  return students.filter((student) => getStudentStatus(student) !== "official");
+}
+
+// Returns "present", "absent" or "late" if the student has a saved
+// attendance record for the given date (default: today), otherwise null.
+function getTodayAttendance(studentId, date) {
+  const day = date || getToday();
+
+  const record = records.find(
+    (r) => r.studentId === studentId && r.date === day,
+  );
+
+  return record ? record.status : null;
+}
+
+function getStudentsByStatus(status) {
+  return students.filter((student) => getStudentStatus(student) === status);
+}
+
+function getStatusLabel(status) {
+  const t = text[currentLanguage];
+
+  if (status === "unofficial") {
+    return t.unofficialLabel;
+  }
+
+  if (status === "official") {
+    return t.officialLabel;
+  }
+
+  return t.statusActive;
+}
+
+// =====================================
+// ABSENCE COUNTING + AUTOMATIC DROP
+// =====================================
+
+// Total absences of a student in the whole school year (shown on the sheet)
+function getTotalAbsences(studentId) {
+  return records.filter(
+    (record) =>
+      record.studentId === studentId &&
+      record.status === "absent" &&
+      inSchoolYear(record.date),
+  ).length;
+}
+
+// Absences that count toward the auto-drop rule.
+// If a teacher reinstated the student, counting restarts from that day.
+function getCountedAbsences(student) {
+  const from = student.countFrom || schoolYear.start;
+
+  return records.filter(
+    (record) =>
+      record.studentId === student.id &&
+      record.status === "absent" &&
+      inSchoolYear(record.date) &&
+      record.date >= from,
+  ).length;
+}
+
+function logDrop(student, from, to, type, absences) {
+  dropLog.unshift({
+    studentId: student.id,
+    studentName: student.name,
+    from: from,
+    to: to,
+    type: type,
+    absences: absences,
+    date: new Date().toISOString(),
+    by: currentFaculty ? currentFaculty.name : "",
+  });
+
+  saveDropLog();
+}
+
+// Checks every student and applies the rules:
+//   >= 3 absences and Active      -> Unofficially Dropped
+//   >= 8 absences (not official)  -> Officially Dropped
+// Returns the list of students that were changed.
+function applyAutoDrop() {
+  const changed = [];
+
+  students.forEach((student) => {
+    const status = getStudentStatus(student);
+
+    if (status === "official") {
+      return;
+    }
+
+    const count = getCountedAbsences(student);
+
+    let target = null;
+
+    if (count >= ABSENT_OFFICIAL) {
+      target = "official";
+    } else if (count >= ABSENT_UNOFFICIAL && status === "active") {
+      target = "unofficial";
+    }
+
+    if (target) {
+      student.status = target;
+
+      student.statusDate = new Date().toISOString();
+
+      student.statusReason = "auto";
+
+      logDrop(student, status, target, "auto", count);
+
+      changed.push({ student: student, to: target, count: count });
+    }
+  });
+
+  if (changed.length > 0) {
+    saveStudents();
+  }
+
+  return changed;
+}
+
+function buildAutoDropMessage(changed) {
+  const t = text[currentLanguage];
+
+  const lines = changed.map(
+    (item) =>
+      "• " +
+      item.student.name +
+      " (" +
+      item.student.id +
+      ") → " +
+      getStatusLabel(item.to) +
+      " [" +
+      item.count +
+      " " +
+      t.absencesWord +
+      "]",
+  );
+
+  return t.autoDropAlert + "\n\n" + lines.join("\n");
+}
+
+// Small "Absences: 2/3" line for the attendance and student cards
+function getAbsenceLine(student) {
+  const t = text[currentLanguage];
+
+  const status = getStudentStatus(student);
+
+  const count = getCountedAbsences(student);
+
+  if (status === "official") {
+    return "";
+  }
+
+  const limit = status === "active" ? ABSENT_UNOFFICIAL : ABSENT_OFFICIAL;
+
+  const warn = count >= limit - 1 ? "abs-warn" : "";
+
+  return `<p class="absence-line ${warn}">
+            <strong>${t.absencesLabel}:</strong> ${count}/${limit}
+          </p>`;
+}
+
+// =====================================
+// FACULTY AUTHENTICATION
+// =====================================
+
+// Hash a password with a per-account salt (SHA-256).
+// Passwords are never stored in plain text.
+async function hashPassword(password, salt) {
+  const data = salt + ":" + password;
+
+  if (window.crypto && window.crypto.subtle) {
+    const buffer = await window.crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(data),
+    );
+
+    return Array.from(new Uint8Array(buffer))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  // Fallback for browsers without crypto.subtle
+  let hash = 5381;
+
+  for (let i = 0; i < data.length; i++) {
+    hash = ((hash << 5) + hash + data.charCodeAt(i)) | 0;
+  }
+
+  return "f" + (hash >>> 0).toString(16);
+}
+
+function generateSalt() {
+  if (window.crypto && window.crypto.getRandomValues) {
+    const bytes = new Uint8Array(16);
+
+    window.crypto.getRandomValues(bytes);
+
+    return Array.from(bytes)
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  return String(Date.now()) + Math.random().toString(16).slice(2);
+}
+
+function showAuthMessage(elementId, message, type) {
+  const box = document.getElementById(elementId);
+
+  box.textContent = message;
+
+  box.className = "auth-message" + (message ? " " + type : "");
+}
+
+function clearAuthMessages() {
+  showAuthMessage("loginMessage", "", "");
+  showAuthMessage("signupMessage", "", "");
+}
+
+function switchAuthTab(tab) {
+  const isLogin = tab === "login";
+
+  document.getElementById("loginForm").classList.toggle("hidden", !isLogin);
+
+  document.getElementById("signupForm").classList.toggle("hidden", isLogin);
+
+  document.getElementById("tabLogin").classList.toggle("active", isLogin);
+
+  document.getElementById("tabSignup").classList.toggle("active", !isLogin);
+
+  clearAuthMessages();
+}
+
+function toggleShowPassword(show, inputIds) {
+  inputIds.forEach((id) => {
+    document.getElementById(id).type = show ? "text" : "password";
+  });
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// ---------- CREATE ACCOUNT ----------
+
+async function handleSignup(event) {
+  event.preventDefault();
+
+  const t = text[currentLanguage];
+
+  const name = document.getElementById("signupName").value.trim();
+
+  const id = document.getElementById("signupId").value.trim();
+
+  const department = document.getElementById("signupDept").value.trim();
+
+  const email = document.getElementById("signupEmail").value.trim();
+
+  const password = document.getElementById("signupPassword").value;
+
+  const confirm = document.getElementById("signupConfirm").value;
+
+  const code = document.getElementById("signupCode").value.trim();
+
+  if (!name || !id || !department || !email || !password || !confirm || !code) {
+    showAuthMessage("signupMessage", t.errFillAll, "error");
+    return;
+  }
+
+  if (!isValidEmail(email)) {
+    showAuthMessage("signupMessage", t.errEmail, "error");
+    return;
+  }
+
+  if (password.length < 8) {
+    showAuthMessage("signupMessage", t.errShortPassword, "error");
+    return;
+  }
+
+  if (password !== confirm) {
+    showAuthMessage("signupMessage", t.errMismatch, "error");
+    return;
+  }
+
+  // Only faculty who have the access code can register
+  if (code !== FACULTY_ACCESS_CODE) {
+    showAuthMessage("signupMessage", t.errCode, "error");
+    return;
+  }
+
+  if (faculty.some((f) => f.id.toLowerCase() === id.toLowerCase())) {
+    showAuthMessage("signupMessage", t.errIdExists, "error");
+    return;
+  }
+
+  if (faculty.some((f) => f.email.toLowerCase() === email.toLowerCase())) {
+    showAuthMessage("signupMessage", t.errEmailExists, "error");
+    return;
+  }
+
+  const salt = generateSalt();
+
+  const passwordHash = await hashPassword(password, salt);
+
+  faculty.push({
+    id: id,
+    name: name,
+    department: department,
+    email: email,
+    salt: salt,
+    passwordHash: passwordHash,
+    createdAt: new Date().toISOString(),
+  });
+
+  localStorage.setItem("faculty", JSON.stringify(faculty));
+
+  document.getElementById("signupForm").reset();
+
+  switchAuthTab("login");
+
+  document.getElementById("loginId").value = id;
+
+  document.getElementById("loginPassword").value = "";
+
+  showAuthMessage("loginMessage", t.okCreated, "success");
+
+  document.getElementById("loginPassword").focus();
+}
+
+// ---------- LOGIN ----------
+
+async function handleLogin(event) {
+  event.preventDefault();
+
+  const t = text[currentLanguage];
+
+  const now = Date.now();
+
+  if (now < lockedUntil) {
+    const seconds = Math.ceil((lockedUntil - now) / 1000);
+
+    showAuthMessage(
+      "loginMessage",
+      t.errLocked.replace("{s}", seconds),
+      "error",
+    );
+
+    return;
+  }
+
+  const identifier = document
+    .getElementById("loginId")
+    .value.trim()
+    .toLowerCase();
+
+  const password = document.getElementById("loginPassword").value;
+
+  if (!identifier || !password) {
+    showAuthMessage("loginMessage", t.errFillAll, "error");
+    return;
+  }
+
+  const account = faculty.find(
+    (f) =>
+      f.id.toLowerCase() === identifier || f.email.toLowerCase() === identifier,
+  );
+
+  let valid = false;
+
+  if (account) {
+    const hash = await hashPassword(password, account.salt);
+
+    valid = hash === account.passwordHash;
+  }
+
+  if (!valid) {
+    failedAttempts++;
+
+    if (failedAttempts >= MAX_LOGIN_ATTEMPTS) {
+      failedAttempts = 0;
+
+      lockedUntil = Date.now() + LOCKOUT_SECONDS * 1000;
+
+      showAuthMessage(
+        "loginMessage",
+        t.errLocked.replace("{s}", LOCKOUT_SECONDS),
+        "error",
+      );
+    } else {
+      showAuthMessage("loginMessage", t.errLogin, "error");
+    }
+
+    return;
+  }
+
+  failedAttempts = 0;
+
+  startSession(account);
+}
+
+// ---------- SESSION ----------
+
+function startSession(account) {
+  currentFaculty = account;
+
+  sessionStorage.setItem("facultySession", account.id);
+
+  document.getElementById("loginForm").reset();
+
+  clearAuthMessages();
+
+  document.getElementById("authScreen").classList.add("hidden");
+
+  document.getElementById("appShell").classList.remove("hidden");
+
+  initApp();
+}
+
+function logout() {
+  if (!confirm(text[currentLanguage].logoutConfirm)) {
+    return;
+  }
+
+  currentFaculty = null;
+
+  sessionStorage.removeItem("facultySession");
+
+  document.getElementById("appShell").classList.add("hidden");
+
+  document.getElementById("authScreen").classList.remove("hidden");
+
+  switchAuthTab("login");
+}
+
+function restoreSession() {
+  const savedId = sessionStorage.getItem("facultySession");
+
+  if (!savedId) {
+    return false;
+  }
+
+  const account = faculty.find((f) => f.id === savedId);
+
+  if (!account) {
+    sessionStorage.removeItem("facultySession");
+    return false;
+  }
+
+  currentFaculty = account;
+
+  return true;
+}
+
+// =====================================
+// LANGUAGE SYSTEM
+// =====================================
+
+// Redraws every page that shows data
+function refreshAll() {
+  displayStudents();
+  displayAttendance();
+  displayReports();
+  renderSheet();
+  renderDropLog();
+  updateDashboard();
+}
+
+function changeLanguage(value) {
+  currentLanguage = value || document.getElementById("languageSelect").value;
+
+  localStorage.setItem("language", currentLanguage);
+
+  applyLanguage();
+
+  updatePageHeader(getCurrentPage());
+
+  refreshAll();
+}
+
+function applyAuthLanguage() {
+  const t = text[currentLanguage];
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+
+    if (t[key] !== undefined) {
+      el.textContent = t[key];
+    }
+  });
+
+  document.getElementById("authLanguage").value = currentLanguage;
+
+  // Clear any old message so it doesn't stay in the wrong language
+  clearAuthMessages();
+}
+
+function fillRule(template) {
+  return template
+    .replace("{u}", ABSENT_UNOFFICIAL)
+    .replace("{o}", ABSENT_OFFICIAL);
+}
+
+function applyLanguage() {
+  const t = text[currentLanguage];
+
+  document.getElementById("menuDashboard").textContent = t.dashboard;
+
+  document.getElementById("menuStudents").textContent = t.students;
+
+  document.getElementById("menuAttendance").textContent = t.attendance;
+
+  document.getElementById("menuSheet").textContent = t.sheet;
+
+  document.getElementById("menuReports").textContent = t.reports;
+
+  document.getElementById("menuSettings").textContent = t.settings;
+
+  document.getElementById("menuLogout").textContent = t.logout;
+
+  document.getElementById("profileName").textContent = currentFaculty
+    ? currentFaculty.name
+    : t.manager;
+
+  document.getElementById("profileRole").textContent = currentFaculty
+    ? currentFaculty.department
+    : t.role;
+
+  document.getElementById("welcomeText").textContent = currentFaculty
+    ? t.welcomeUser + currentFaculty.name.split(" ")[0] + "! 👋"
+    : t.welcome;
+
+  document.getElementById("welcomeDescription").textContent = t.description;
+
+  document.getElementById("totalLabel").textContent = t.total;
+
+  document.getElementById("presentLabel").textContent = t.present;
+
+  document.getElementById("absentLabel").textContent = t.absent;
+
+  document.getElementById("lateLabel").textContent = t.late;
+
+  document.getElementById("unofficialDropLabel").textContent =
+    t.unofficialLabel;
+
+  document.getElementById("officialDropLabel").textContent = t.officialLabel;
+
+  document.getElementById("droppedTitle").textContent = t.droppedTitle;
+
+  document.getElementById("unofficialListTitle").textContent =
+    "⚠️ " + t.unofficialLabel;
+
+  document.getElementById("officialListTitle").textContent =
+    "❌ " + t.officialLabel;
+
+  document.getElementById("studentTitle").textContent = t.studentTitle;
+
+  document.getElementById("attendanceTitle").textContent = t.attendanceTitle;
+
+  document.getElementById("attendanceHint").textContent = fillRule(
+    t.attendanceHint,
+  );
+
+  document.getElementById("reportTitle").textContent = t.reportTitle;
+
+  document.getElementById("settingsTitle").textContent = t.settingsTitle;
+
+  document.getElementById("addStudentButton").textContent = t.add;
+
+  document.getElementById("saveButton").textContent = t.save;
+
+  document.getElementById("printButton").textContent = "🖨 " + t.print;
+
+  document.getElementById("studentSearch").placeholder = t.search;
+
+  // Sheet page
+  document.getElementById("sheetTitle").textContent = t.sheetTitle;
+
+  document.getElementById("sheetSYLabel").textContent = t.sheetSYLabel;
+
+  document.getElementById("sheetLegend").textContent = t.sheetLegend;
+
+  document.getElementById("sheetSearch").placeholder = t.search;
+
+  document.getElementById("sheetCsvButton").textContent = t.csvBtn;
+
+  document.getElementById("sheetPrintButton").textContent = t.printSheetBtn;
+
+  document.getElementById("dropLogTitle").textContent = t.dropLogTitle;
+
+  // Settings: school year + rules
+  document.getElementById("syCardTitle").textContent = t.syCardTitle;
+
+  document.getElementById("syStartLabel").textContent = t.syStartLabel;
+
+  document.getElementById("syEndLabel").textContent = t.syEndLabel;
+
+  document.getElementById("rulesTitle").textContent = t.rulesTitle;
+
+  document.getElementById("rulesText").textContent = fillRule(t.rulesText);
+
+  // Student filter options
+  const filterLabels = {
+    all: t.filterAll,
+    present: t.presentStatus,
+    absent: t.absentStatus,
+    late: t.lateStatus,
+    unofficial: t.unofficialLabel,
+    official: t.officialLabel,
+  };
+
+  document.querySelectorAll("#studentFilter option").forEach((option) => {
+    option.textContent = filterLabels[option.value];
+  });
+
+  document.getElementById("languageSelect").value = currentLanguage;
+
+  applyAuthLanguage();
+}
+
+// =====================================
+// PAGE NAVIGATION
+// =====================================
+
+function openPage(page, button) {
+  document.querySelectorAll("section").forEach((section) => {
+    section.classList.add("hidden");
+  });
+
+  const target = document.getElementById(page);
+
+  if (!target) {
+    console.error("Page not found:", page);
+    return;
+  }
+
+  target.classList.remove("hidden");
+
+  document.querySelectorAll(".nav-btn").forEach((btn) => {
+    btn.classList.remove("active");
+  });
+
+  if (button) {
+    button.classList.add("active");
+  }
+
+  updatePageHeader(page);
+
+  if (page === "students") {
+    displayStudents();
+  }
+
+  if (page === "attendance") {
+    const dateInput = document.getElementById("attendanceDate");
+
+    if (!dateInput.value) {
+      dateInput.value = getToday();
+    }
+
+    displayAttendance();
+  }
+
+  if (page === "sheet") {
+    renderSheet();
+    renderDropLog();
+  }
+
+  if (page === "reports") {
+    displayReports();
+  }
+
+  if (page === "dashboard") {
+    updateDashboard();
+  }
+}
+
+// =====================================
+// CURRENT PAGE
+// =====================================
+
+function getCurrentPage() {
+  const sections = document.querySelectorAll("section");
+
+  for (const section of sections) {
+    if (!section.classList.contains("hidden")) {
+      return section.id;
+    }
+  }
+
+  return "dashboard";
+}
+
+// =====================================
+// PAGE HEADER
+// =====================================
+
+function updatePageHeader(page) {
+  const t = text[currentLanguage];
+
+  const titles = {
+    dashboard: t.dashboard,
+    students: t.students,
+    attendance: t.attendance,
+    sheet: t.sheet,
+    reports: t.reports,
+    settings: t.settings,
+  };
+
+  const descriptions = {
+    dashboard:
+      currentLanguage === "tl"
+        ? "Sistema ng Attendance ng Universidad de Manila"
+        : "Universidad de Manila Attendance System",
+
+    students:
+      currentLanguage === "tl"
+        ? "Magdagdag at pamahalaan ang mga mag-aaral."
+        : "Add and manage students.",
+
+    attendance:
+      currentLanguage === "tl"
+        ? "Itala ang attendance ng mga mag-aaral."
+        : "Record student attendance.",
+
+    sheet: t.sheetDesc,
+
+    reports:
+      currentLanguage === "tl"
+        ? "Tingnan ang attendance records."
+        : "View attendance records.",
+
+    settings:
+      currentLanguage === "tl"
+        ? "I-configure ang iyong system."
+        : "Configure your system.",
+  };
+
+  document.getElementById("pageTitle").textContent = titles[page];
+
+  document.getElementById("pageDescription").textContent = descriptions[page];
+}
+
+// =====================================
+// STUDENT MANAGEMENT
+// =====================================
+
+function addStudentPrompt() {
+  let id = prompt("Student ID:");
+
+  if (!id) {
+    return;
+  }
+
+  id = id.trim();
+
+  if (!id) {
+    return;
+  }
+
+  if (students.some((student) => student.id === id)) {
+    alert(
+      currentLanguage === "tl"
+        ? "Existing na ang Student ID."
+        : "Student ID already exists.",
+    );
+
+    return;
+  }
+
+  let name = prompt(
+    currentLanguage === "tl" ? "Buong Pangalan:" : "Full Name:",
+  );
+
+  if (!name) {
+    return;
+  }
+
+  name = name.trim();
+
+  if (!name) {
+    return;
+  }
+
+  let course = prompt(
+    currentLanguage === "tl" ? "Course / Section:" : "Course / Section:",
+  );
+
+  if (!course) {
+    return;
+  }
+
+  course = course.trim();
+
+  if (!course) {
+    return;
+  }
+
+  students.push({
+    id: id,
+
+    name: name,
+
+    course: course,
+
+    status: "active",
+
+    dateAdded: new Date().toISOString(),
+  });
+
+  saveStudents();
+
+  displayStudents();
+
+  renderSheet();
+
+  updateDashboard();
+
+  alert(
+    currentLanguage === "tl"
+      ? "Matagumpay na naidagdag ang mag-aaral!"
+      : "Student added successfully!",
+  );
+}
+
+// =====================================
+// DISPLAY STUDENTS
+// =====================================
+
+function getStatusBadge(status) {
+  const t = text[currentLanguage];
+
+  if (status === "unofficial") {
+    return `<span class="badge badge-unofficial">⚠️ ${t.unofficialLabel}</span>`;
+  }
+
+  if (status === "official") {
+    return `<span class="badge badge-official">❌ ${t.officialLabel}</span>`;
+  }
+
+  return `<span class="badge badge-active">🟢 ${t.statusActive}</span>`;
+}
+
+function getStudentActions(student) {
+  const t = text[currentLanguage];
+
+  const status = getStudentStatus(student);
+
+  const id = attr(student.id);
+
+  let buttons = "";
+
+  if (status === "active") {
+    buttons += `
+      <button class="drop-btn unofficial-btn"
+        onclick="setStudentStatus('${id}', 'unofficial')">
+        ${t.unofficialBtn}
+      </button>
+    `;
+  }
+
+  if (status === "active" || status === "unofficial") {
+    buttons += `
+      <button class="drop-btn official-btn"
+        onclick="setStudentStatus('${id}', 'official')">
+        ${t.officialBtn}
+      </button>
+    `;
+  }
+
+  if (status !== "active") {
+    buttons += `
+      <button class="drop-btn reinstate-btn"
+        onclick="setStudentStatus('${id}', 'active')">
+        ${t.reinstateBtn}
+      </button>
+    `;
+  }
+
+  buttons += `
+    <button class="delete-btn" onclick="deleteStudent('${id}')">
+      ${t.deleteBtn}
+    </button>
+  `;
+
+  return buttons;
+}
+
+function displayStudents() {
+  const list = document.getElementById("studentList");
+
+  const t = text[currentLanguage];
+
+  const search = document
+    .getElementById("studentSearch")
+    .value.toLowerCase()
+    .trim();
+
+  const filter = document.getElementById("studentFilter").value;
+
+  const filtered = students.filter((student) => {
+    const status = getStudentStatus(student);
+
+    let matchesFilter = true;
+
+    if (filter === "present" || filter === "absent" || filter === "late") {
+      // Today's attendance of students that are still being recorded
+      matchesFilter =
+        status !== "official" && getTodayAttendance(student.id) === filter;
+    } else if (filter !== "all") {
+      // "unofficial" or "official"
+      matchesFilter = status === filter;
+    }
+
+    const matchesSearch =
+      student.id.toLowerCase().includes(search) ||
+      student.name.toLowerCase().includes(search) ||
+      student.course.toLowerCase().includes(search);
+
+    return matchesFilter && matchesSearch;
+  });
+
+  if (filtered.length === 0) {
+    list.innerHTML = `
+
+            <div class="empty">
+
+                ${students.length === 0 ? t.noStudent : t.noMatching}
+
+            </div>
+
+        `;
+
+    return;
+  }
+
+  list.innerHTML = filtered
+    .map((student) => {
+      const status = getStudentStatus(student);
+
+      const autoTag =
+        student.statusReason === "auto" ? " " + t.autoTag : "";
+
+      const since =
+        status !== "active" && student.statusDate
+          ? `<p><strong>${t.statusSince}</strong> ${escapeHTML(formatDate(student.statusDate))}${escapeHTML(autoTag)}</p>`
+          : "";
+
+      const todayStatus =
+        status !== "official" ? getTodayAttendance(student.id) : null;
+
+      const todayLine = todayStatus
+        ? `<p><strong>${t.todayLabel}</strong> ${getStatusText(todayStatus)}</p>`
+        : "";
+
+      const totalLine = `<p><strong>${t.absencesSY}</strong> ${getTotalAbsences(student.id)}</p>`;
+
+      const countingLine = student.countFrom
+        ? `<p><strong>${t.countingFrom}</strong> ${escapeHTML(formatDay(student.countFrom))}</p>`
+        : "";
+
+      return `
+
+            <div class="student-card ${status !== "active" ? "dropped" : ""}">
+
+                <div class="student-info">
+
+                    <h3>
+                        ${escapeHTML(student.name)}
+                        ${getStatusBadge(status)}
+                    </h3>
+
+                    <p>
+                        <strong>ID:</strong>
+                        ${escapeHTML(student.id)}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Course / Section:
+                        </strong>
+
+                        ${escapeHTML(student.course)}
+                    </p>
+
+                    ${totalLine}
+
+                    ${getAbsenceLine(student)}
+
+                    ${countingLine}
+
+                    ${since}
+
+                    ${todayLine}
+
+                </div>
+
+
+                <div class="student-actions">
+
+                    ${getStudentActions(student)}
+
+                </div>
+
+            </div>
+
+        `;
+    })
+    .join("");
+}
+
+// =====================================
+// CHANGE STUDENT STATUS (DROP / REINSTATE)
+// =====================================
+
+function setStudentStatus(id, newStatus) {
+  const t = text[currentLanguage];
+
+  const student = students.find((s) => s.id === id);
+
+  if (!student) {
+    return;
+  }
+
+  const questions = {
+    unofficial: t.confirmUnofficial,
+    official: t.confirmOfficial,
+    active: t.confirmReinstate,
+  };
+
+  if (!confirm(questions[newStatus])) {
+    return;
+  }
+
+  const oldStatus = getStudentStatus(student);
+
+  const countBefore = getCountedAbsences(student);
+
+  student.status = newStatus;
+
+  if (newStatus === "active") {
+    delete student.statusDate;
+
+    delete student.statusReason;
+
+    // Restart the absence count so the student is not dropped again right away
+    student.countFrom = getToday();
+
+    logDrop(student, oldStatus, "active", "reinstate", countBefore);
+  } else {
+    student.statusDate = new Date().toISOString();
+
+    student.statusReason = "manual";
+
+    logDrop(student, oldStatus, newStatus, "manual", countBefore);
+  }
+
+  saveStudents();
+
+  refreshAll();
+
+  alert(t.statusChanged);
+}
+
+// =====================================
+// DELETE STUDENT
+// =====================================
+
+function deleteStudent(id) {
+  const t = text[currentLanguage];
+
+  if (!confirm(t.confirm)) {
+    return;
+  }
+
+  students = students.filter((student) => student.id !== id);
+
+  records = records.filter((record) => record.studentId !== id);
+
+  saveStudents();
+
+  localStorage.setItem("records", JSON.stringify(records));
+
+  refreshAll();
+
+  alert(t.deleted);
+}
+
+// =====================================
+// ATTENDANCE DATE
+// =====================================
+
+function getSelectedDate() {
+  const date = document.getElementById("attendanceDate").value;
+
+  if (date) {
+    return date;
+  }
+
+  return getToday();
+}
+
+// =====================================
+// ATTENDANCE (active + unofficially dropped students are listed)
+// =====================================
+
+// Loads the saved status of every listed student for the selected date.
+// Called ONLY when the page/date/student list changes, never when a
+// button is clicked (that was the bug that reset Absent/Late to Present).
+function loadAttendanceStatus() {
+  const date = getSelectedDate();
+
+  attendanceStatus = {};
+
+  getAttendanceStudents().forEach((student) => {
+    const existing = records.find(
+      (record) => record.studentId === student.id && record.date === date,
+    );
+
+    attendanceStatus[student.id] = existing ? existing.status : "present";
+  });
+}
+
+function displayAttendance() {
+  loadAttendanceStatus();
+
+  renderAttendance();
+}
+
+function renderAttendance() {
+  const list = document.getElementById("attendanceList");
+
+  const t = text[currentLanguage];
+
+  const listed = getAttendanceStudents();
+
+  if (students.length === 0) {
+    list.innerHTML = `<div class="empty">${t.noStudent}</div>`;
+
+    return;
+  }
+
+  if (listed.length === 0) {
+    list.innerHTML = `<div class="empty">${t.noActive}</div>`;
+
+    return;
+  }
+
+  list.innerHTML = listed
+    .map((student) => {
+      const status = attendanceStatus[student.id] || "present";
+
+      const id = attr(student.id);
+
+      const studentStatus = getStudentStatus(student);
+
+      const badge =
+        studentStatus === "unofficial" ? getStatusBadge(studentStatus) : "";
+
+      return `
+
+                <div class="attendance-card">
+
+                    <div class="student-info">
+
+                        <h3>
+                            ${escapeHTML(student.name)}
+                            ${badge}
+                        </h3>
+
+                        <p>
+                            ID:
+                            ${escapeHTML(student.id)}
+                        </p>
+
+                        <p>
+                            ${escapeHTML(student.course)}
+                        </p>
+
+                        ${getAbsenceLine(student)}
+
+                    </div>
+
+
+                    <div class="attendance-buttons">
+
+                        <button
+                            type="button"
+                            class="status-btn present-btn ${status === "present" ? "selected" : ""}"
+                            onclick="setStatus('${id}', 'present')">
+                            🟢 ${t.presentStatus}
+                        </button>
+
+                        <button
+                            type="button"
+                            class="status-btn absent-btn ${status === "absent" ? "selected" : ""}"
+                            onclick="setStatus('${id}', 'absent')">
+                            🔴 ${t.absentStatus}
+                        </button>
+
+                        <button
+                            type="button"
+                            class="status-btn late-btn ${status === "late" ? "selected" : ""}"
+                            onclick="setStatus('${id}', 'late')">
+                            🟡 ${t.lateStatus}
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+    })
+    .join("");
+}
+
+// =====================================
+// SET ATTENDANCE STATUS
+// =====================================
+
+function setStatus(studentId, status) {
+  attendanceStatus[studentId] = status;
+
+  // Only redraw. Do NOT reload from saved records here.
+  renderAttendance();
+}
+
+// =====================================
+// SAVE ATTENDANCE
+// =====================================
+
+function saveAttendance() {
+  const date = document.getElementById("attendanceDate").value;
+
+  if (!date) {
+    alert(text[currentLanguage].selectDate);
+
+    return;
+  }
+
+  getAttendanceStudents().forEach((student) => {
+    const status = attendanceStatus[student.id] || "present";
+
+    const existingIndex = records.findIndex(
+      (record) => record.studentId === student.id && record.date === date,
+    );
+
+    const newRecord = {
+      studentId: student.id,
+
+      studentName: student.name,
+
+      date: date,
+
+      status: status,
+
+      time: new Date().toLocaleTimeString(),
+
+      recordedBy: currentFaculty ? currentFaculty.name : "",
+    };
+
+    if (existingIndex >= 0) {
+      records[existingIndex] = newRecord;
+    } else {
+      records.push(newRecord);
+    }
+  });
+
+  localStorage.setItem("records", JSON.stringify(records));
+
+  // Apply the 3-absence / 8-absence rules
+  const dropped = applyAutoDrop();
+
+  let message = text[currentLanguage].saved;
+
+  if (dropped.length > 0) {
+    message += "\n\n" + buildAutoDropMessage(dropped);
+  }
+
+  alert(message);
+
+  refreshAll();
+}
+
+// =====================================
+// DASHBOARD
+// =====================================
+
+function renderDroppedList(elementId, list) {
+  const box = document.getElementById(elementId);
+
+  const t = text[currentLanguage];
+
+  if (list.length === 0) {
+    box.innerHTML = `<p class="drop-empty">${t.noneDropped}</p>`;
+
+    return;
+  }
+
+  box.innerHTML = list
+    .map(
+      (student) => `
+
+            <div class="drop-item">
+
+                <strong>${escapeHTML(student.name)}</strong>
+
+                <small>
+                    ${escapeHTML(student.id)}
+                    &bull;
+                    ${escapeHTML(student.course)}
+                    &bull;
+                    ${getTotalAbsences(student.id)} ${t.absencesWord}
+                </small>
+
+            </div>
+
+        `,
+    )
+    .join("");
+}
+
+function updateDashboard() {
+  const today = getToday();
+
+  const listed = getAttendanceStudents();
+
+  const listedIds = new Set(listed.map((student) => student.id));
+
+  // Students that are still being recorded count toward today's attendance
+  const todayRecords = records.filter(
+    (record) => record.date === today && listedIds.has(record.studentId),
+  );
+
+  const present = todayRecords.filter(
+    (record) => record.status === "present",
+  ).length;
+
+  const absent = todayRecords.filter(
+    (record) => record.status === "absent",
+  ).length;
+
+  const late = todayRecords.filter((record) => record.status === "late").length;
+
+  const unofficial = getStudentsByStatus("unofficial");
+
+  const official = getStudentsByStatus("official");
+
+  document.getElementById("totalStudents").textContent = students.length;
+
+  document.getElementById("presentCount").textContent = present;
+
+  document.getElementById("absentCount").textContent = absent;
+
+  document.getElementById("lateCount").textContent = late;
+
+  document.getElementById("unofficialCount").textContent = unofficial.length;
+
+  document.getElementById("officialCount").textContent = official.length;
+
+  renderDroppedList("unofficialList", unofficial);
+
+  renderDroppedList("officialList", official);
+
+  let percentage = 0;
+
+  if (listed.length > 0) {
+    percentage = Math.round(((present + late) / listed.length) * 100);
+  }
+
+  document.getElementById("attendanceProgress").style.width = percentage + "%";
+
+  document.getElementById("percentageText").textContent =
+    percentage + "% " + text[currentLanguage].percentage;
+
+  updateActivity();
+}
+
+// =====================================
+// RECENT ACTIVITY
+// =====================================
+
+function updateActivity() {
+  const activity = document.getElementById("activity");
+
+  if (records.length === 0) {
+    activity.textContent =
+      currentLanguage === "tl" ? "Walang aktibidad." : "No activity yet.";
+
+    return;
+  }
+
+  const recent = [...records]
+    .sort((a, b) => {
+      const dateA = new Date(a.date + "T" + (a.time || "00:00:00"));
+
+      const dateB = new Date(b.date + "T" + (b.time || "00:00:00"));
+
+      return dateB - dateA;
+    })
+    .slice(0, 5);
+
+  activity.innerHTML = recent
+    .map(
+      (record) => `
+
+            <div class="report-row">
+
+                <strong>
+                    ${escapeHTML(record.studentName)}
+                </strong>
+
+                <br>
+
+                ${escapeHTML(record.date)}
+
+                -
+
+                ${getStatusText(record.status)}
+
+            </div>
+
+        `,
+    )
+    .join("");
+}
+
+// =====================================
+// FULL ATTENDANCE SHEET (WHOLE SCHOOL YEAR)
+// =====================================
+
+// Every date in the school year that has at least one saved record
+function getSheetDates() {
+  const days = new Set();
+
+  records.forEach((record) => {
+    if (inSchoolYear(record.date)) {
+      days.add(record.date);
+    }
+  });
+
+  return [...days].sort();
+}
+
+function getCellInfo(status) {
+  if (status === "present") {
+    return { letter: "P", css: "cell-present" };
+  }
+
+  if (status === "absent") {
+    return { letter: "A", css: "cell-absent" };
+  }
+
+  if (status === "late") {
+    return { letter: "L", css: "cell-late" };
+  }
+
+  return { letter: "–", css: "cell-none" };
+}
+
+function updateMonthFilter(allDates) {
+  const select = document.getElementById("sheetMonth");
+
+  const t = text[currentLanguage];
+
+  const previous = select.value || "all";
+
+  const months = [...new Set(allDates.map((day) => day.slice(0, 7)))];
+
+  select.innerHTML =
+    `<option value="all">${escapeHTML(t.monthAll)}</option>` +
+    months
+      .map((month) => {
+        const label = new Date(month + "-01T00:00:00").toLocaleDateString(
+          "en-PH",
+          { month: "long", year: "numeric" },
+        );
+
+        return `<option value="${month}">${escapeHTML(label)}</option>`;
+      })
+      .join("");
+
+  select.value = months.includes(previous) ? previous : "all";
+}
+
+function renderSheet() {
+  const table = document.getElementById("sheetTable");
+
+  const t = text[currentLanguage];
+
+  document.getElementById("sheetSY").textContent =
+    "S.Y. " +
+    getSchoolYearLabel() +
+    " (" +
+    formatDay(schoolYear.start) +
+    " – " +
+    formatDay(schoolYear.end) +
+    ")";
+
+  const allDates = getSheetDates();
+
+  updateMonthFilter(allDates);
+
+  const month = document.getElementById("sheetMonth").value;
+
+  const dates =
+    month === "all"
+      ? allDates
+      : allDates.filter((day) => day.slice(0, 7) === month);
+
+  const search = document
+    .getElementById("sheetSearch")
+    .value.toLowerCase()
+    .trim();
+
+  const rows = students.filter(
+    (student) =>
+      student.id.toLowerCase().includes(search) ||
+      student.name.toLowerCase().includes(search) ||
+      student.course.toLowerCase().includes(search),
+  );
+
+  if (students.length === 0 || rows.length === 0) {
+    table.innerHTML = `<tbody><tr><td class="sheet-empty">${
+      students.length === 0 ? t.noStudent : t.noMatching
+    }</td></tr></tbody>`;
+
+    return;
+  }
+
+  // Quick lookup: "studentId|date" -> status
+  const lookup = new Map();
+
+  records.forEach((record) => {
+    lookup.set(record.studentId + "|" + record.date, record.status);
+  });
+
+  const dateHeaders = dates
+    .map((day) => {
+      const d = new Date(day + "T00:00:00");
+
+      const label = d.toLocaleDateString("en-PH", {
+        month: "short",
+        day: "numeric",
+      });
+
+      const weekday = d.toLocaleDateString("en-PH", { weekday: "short" });
+
+      return `<th class="col-date">${label}<small>${weekday}</small></th>`;
+    })
+    .join("");
+
+  const head = `
+    <thead>
+      <tr>
+        <th class="col-no sticky-1">#</th>
+        <th class="col-student sticky-2">${t.colStudent}</th>
+        ${dateHeaders}
+        <th class="col-total">${t.presentStatus}</th>
+        <th class="col-total">${t.absentStatus}</th>
+        <th class="col-total">${t.lateStatus}</th>
+        <th class="col-status">Status</th>
+      </tr>
+    </thead>
+  `;
+
+  const body = rows
+    .map((student, index) => {
+      let present = 0;
+      let absent = 0;
+      let late = 0;
+
+      // Totals always cover the whole school year, so they match the drop rules
+      allDates.forEach((day) => {
+        const status = lookup.get(student.id + "|" + day);
+
+        if (status === "present") present++;
+        if (status === "absent") absent++;
+        if (status === "late") late++;
+      });
+
+      const cells = dates
+        .map((day) => {
+          const info = getCellInfo(lookup.get(student.id + "|" + day));
+
+          return `<td class="${info.css}">${info.letter}</td>`;
+        })
+        .join("");
+
+      const status = getStudentStatus(student);
+
+      const absCss =
+        absent >= ABSENT_OFFICIAL
+          ? "abs-official"
+          : absent >= ABSENT_UNOFFICIAL
+            ? "abs-unofficial"
+            : "";
+
+      return `
+        <tr class="${status !== "active" ? "row-dropped" : ""}">
+          <td class="col-no sticky-1">${index + 1}</td>
+          <td class="col-student sticky-2">
+            <strong>${escapeHTML(student.name)}</strong>
+            <small>${escapeHTML(student.id)} &bull; ${escapeHTML(student.course)}</small>
+          </td>
+          ${cells}
+          <td class="col-total">${present}</td>
+          <td class="col-total ${absCss}">${absent}</td>
+          <td class="col-total">${late}</td>
+          <td class="col-status">${getStatusBadge(status)}</td>
+        </tr>
+      `;
+    })
+    .join("");
+
+  const note =
+    allDates.length === 0
+      ? `<caption class="sheet-caption">${t.sheetNoDates}</caption>`
+      : "";
+
+  table.innerHTML = note + head + `<tbody>${body}</tbody>`;
+}
+
+// ---------- DROP HISTORY ----------
+
+function renderDropLog() {
+  const box = document.getElementById("dropLog");
+
+  const t = text[currentLanguage];
+
+  if (dropLog.length === 0) {
+    box.innerHTML = `<p class="drop-empty">${t.noDropLog}</p>`;
+
+    return;
+  }
+
+  const typeLabels = {
+    auto: t.logAuto,
+    manual: t.logManual,
+    reinstate: t.logReinstate,
+  };
+
+  box.innerHTML = dropLog
+    .slice(0, 100)
+    .map((entry) => {
+      const when = new Date(entry.date);
+
+      const whenText = isNaN(when.getTime())
+        ? ""
+        : when.toLocaleDateString("en-PH", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          }) +
+          " " +
+          when.toLocaleTimeString("en-PH", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+      return `
+        <div class="log-row">
+          <div>
+            <strong>${escapeHTML(entry.studentName)}</strong>
+            <small>${escapeHTML(entry.studentId)}</small>
+          </div>
+          <div>
+            ${escapeHTML(getStatusLabel(entry.from))}
+            →
+            ${escapeHTML(getStatusLabel(entry.to))}
+          </div>
+          <div>
+            <span class="log-tag log-${escapeHTML(entry.type)}">${escapeHTML(typeLabels[entry.type] || entry.type)}</span>
+            &bull; ${Number(entry.absences) || 0} ${t.absencesWord}
+          </div>
+          <small>${escapeHTML(whenText)}${entry.by ? " &bull; " + escapeHTML(entry.by) : ""}</small>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+// ---------- CSV EXPORT ----------
+
+// Quotes a CSV cell and blocks spreadsheet formula injection
+function csvCell(value) {
+  let s = String(value);
+
+  if (/^[=+\-@\t\r]/.test(s)) {
+    s = "'" + s;
+  }
+
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+
+function downloadSheetCSV() {
+  const t = text[currentLanguage];
+
+  if (students.length === 0) {
+    alert(t.noStudent);
+
+    return;
+  }
+
+  const dates = getSheetDates();
+
+  const labels = {
+    present: t.presentStatus,
+    absent: t.absentStatus,
+    late: t.lateStatus,
+  };
+
+  const lookup = new Map();
+
+  records.forEach((record) => {
+    lookup.set(record.studentId + "|" + record.date, record.status);
+  });
+
+  const lines = [];
+
+  lines.push(
+    [
+      "Student ID",
+      "Name",
+      "Course / Section",
+      ...dates,
+      t.presentStatus,
+      t.absentStatus,
+      t.lateStatus,
+      "Status",
+    ]
+      .map(csvCell)
+      .join(","),
+  );
+
+  students.forEach((student) => {
+    let present = 0;
+    let absent = 0;
+    let late = 0;
+
+    const cells = dates.map((day) => {
+      const status = lookup.get(student.id + "|" + day);
+
+      if (status === "present") present++;
+      if (status === "absent") absent++;
+      if (status === "late") late++;
+
+      return labels[status] || "";
+    });
+
+    lines.push(
+      [
+        student.id,
+        student.name,
+        student.course,
+        ...cells,
+        present,
+        absent,
+        late,
+        getStatusLabel(getStudentStatus(student)),
+      ]
+        .map(csvCell)
+        .join(","),
+    );
+  });
+
+  // BOM so Excel reads the file as UTF-8
+  const blob = new Blob(["﻿" + lines.join("\r\n")], {
+    type: "text/csv;charset=utf-8;",
+  });
+
+  const link = document.createElement("a");
+
+  link.href = URL.createObjectURL(blob);
+
+  link.download = "UDM-Attendance-Sheet-SY-" + getSchoolYearLabel() + ".csv";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(link.href);
+}
+
+function printSheet() {
+  if (students.length === 0) {
+    alert(text[currentLanguage].noStudent);
+
+    return;
+  }
+
+  window.print();
+}
+
+// =====================================
+// REPORTS
+// =====================================
+
+function displayReports() {
+  const list = document.getElementById("reportList");
+
+  if (records.length === 0) {
+    list.innerHTML = `
+
+            <div class="empty">
+
+                ${text[currentLanguage].noReport}
+
+            </div>
+
+        `;
+
+    return;
+  }
+
+  const sorted = [...records].sort((a, b) => {
+    if (a.date === b.date) {
+      return a.studentName.localeCompare(b.studentName);
+    }
+
+    return b.date.localeCompare(a.date);
+  });
+
+  list.innerHTML = sorted
+    .map(
+      (record) => `
+
+            <div class="report-row">
+
+                <strong>
+                    ${escapeHTML(record.studentName)}
+                </strong>
+
+                <br>
+
+                Student ID:
+                ${escapeHTML(record.studentId)}
+
+                <br>
+
+                Date:
+                ${escapeHTML(record.date)}
+
+                <br>
+
+                Status:
+
+                <strong>
+                    ${getStatusText(record.status)}
+                </strong>
+
+                ${
+                  record.recordedBy
+                    ? "<br>Recorded by: " + escapeHTML(record.recordedBy)
+                    : ""
+                }
+
+            </div>
+
+        `,
+    )
+    .join("");
+}
+
+// =====================================
+// STATUS TRANSLATION
+// =====================================
+
+function getStatusText(status) {
+  const t = text[currentLanguage];
+
+  if (status === "present") {
+    return "🟢 " + t.presentStatus;
+  }
+
+  if (status === "absent") {
+    return "🔴 " + t.absentStatus;
+  }
+
+  if (status === "late") {
+    return "🟡 " + t.lateStatus;
+  }
+
+  return status;
+}
+
+// =====================================
+// PRINT REPORT
+// =====================================
+
+function printReport() {
+  if (records.length === 0) {
+    alert(text[currentLanguage].noReport);
+
+    return;
+  }
+
+  window.print();
+}
+
+// =====================================
+// CLOCK
+// =====================================
+
+function updateClock() {
+  const now = new Date();
+
+  document.getElementById("date").textContent = now.toLocaleDateString(
+    "en-PH",
+    {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+  );
+
+  document.getElementById("time").textContent = now.toLocaleTimeString(
+    "en-PH",
+    {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    },
+  );
+}
+
+// =====================================
+// THEME
+// =====================================
+
+function changeTheme() {
+  currentTheme = document.getElementById("themeSelect").value;
+
+  localStorage.setItem("theme", currentTheme);
+
+  document.body.classList.remove("dark-mode", "light-mode");
+
+  if (currentTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+
+  if (currentTheme === "light") {
+    document.body.classList.add("light-mode");
+  }
+}
+
+function applyTheme() {
+  const themeSelect = document.getElementById("themeSelect");
+
+  themeSelect.value = currentTheme;
+
+  document.body.classList.remove("dark-mode", "light-mode");
+
+  if (currentTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+
+  if (currentTheme === "light") {
+    document.body.classList.add("light-mode");
+  }
+}
+
+// =====================================
+// INITIALIZE SYSTEM
+// =====================================
+
+// Runs after a faculty member logs in
+function initApp() {
+  applyLanguage();
+
+  applySchoolYearInputs();
+
+  // Always start on the dashboard after login
+  openPage("dashboard", document.querySelector(".nav-btn"));
+
+  document.getElementById("attendanceDate").value = getToday();
+
+  updateDashboard();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Language + theme
+  document.getElementById("languageSelect").value = currentLanguage;
+
+  applyTheme();
+
+  applyLanguage();
+
+  applySchoolYearInputs();
+
+  // Clock
+  updateClock();
+
+  setInterval(updateClock, 1000);
+
+  // Faculty login gate: the system stays hidden until someone logs in
+  if (restoreSession()) {
+    document.getElementById("authScreen").classList.add("hidden");
+
+    document.getElementById("appShell").classList.remove("hidden");
+
+    initApp();
+  } else {
+    switchAuthTab("login");
+  }
+});
+  </script>
+</body>
+</html>
